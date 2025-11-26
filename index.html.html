@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>UzMediaCare — Demo & Pitch</title>
+<style>
+  :root{
+    --blue:#0ea5e9; --dark:#0f172a; --muted:#64748b; --card:#ffffff;
+    --accent:#10b981; --bg:#f8fafc; --glass: rgba(255,255,255,0.8);
+  }
+  body{font-family:Inter, Arial, sans-serif; margin:0; background: #f1f5f9; color:var(--dark); line-height:1.6;}
+  header{background:linear-gradient(90deg,var(--blue),#0b74c9); color:white; padding:36px 20px; text-align:center;}
+  .container{max-width:1100px; margin:28px auto; padding:0 20px;}
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
+  nav a{background:rgba(255,255,255,0.08);color:white;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:14px;}
+  section{background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 22px rgba(2,6,23,0.06);margin-bottom:20px;}
+  h1,h2{color:var(--blue);margin:0 0 12px;}
+  h3{color:var(--dark);margin:0 0 8px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+  .pill{display:inline-block;background:#eef2ff;color:var(--dark);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px;}
+  table{width:100%;border-collapse:collapse;margin-top:12px;}
+  th,td{padding:10px;border:1px solid #eef2f8;text-align:left;}
+  ul{margin:8px 0 0 18px;}
+  .small{color:var(--muted);font-size:14px;}
+  footer{padding:20px;text-align:center;color:var(--muted);font-size:14px;}
+  .codebox{background:#0f172a;color:white;padding:12px;border-radius:8px;font-family:monospace;font-size:13px;overflow:auto;}
+  /* responsive */
+  @media (max-width:600px){ header{padding:24px;} .container{margin:12px auto;padding:0 12px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>UzMediaCare</h1>
+  <p class="small">Mahalliy klinikalar bilan integratsiyalangan aqlli soat monitoring platformasi — Bio-Status, real-time alertlar va AI-izohlar (o‘zbek tilida).</p>
+  <nav>
+    <a href="#problem">Muammo</a>
+    <a href="#solution">Yechim</a>
+    <a href="#architecture">Arxitektura</a>
+    <a href="#flow">User Flow</a>
+    <a href="#competitors">Raqobat</a>
+    <a href="#risks">Risklar</a>
+    <a href="#future">Kelajak</a>
+    <a href="#team">Jamoa</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- Problem -->
+  <section id="problem">
+    <h2>Muammo — Nega UzMediaCare kerak?</h2>
+    <p>O‘zbekistonda aqlli soatlar keng tarqalganiga qaramay, ularning sog‘liq ma’lumotlari mahalliy tibbiyot tizimlariga integratsiyalanmagan. Natijada shifokorlar bemorning real vaqt holatini bilmaydi, trendlar yo‘q va favqulodda hollarda ogohlantirish tizimi ishlamaydi.</p>
+    <div class="grid" style="margin-top:18px;">
+      <div>
+        <h3>Asosiy og‘riqlar</h3>
+        <ul>
+          <li>Real-time monitoring va alertlar yo‘q</li>
+          <li>Data shifokorlar uchun foydalanishga mos emas</li>
+          <li>Trendlar va 7/30/90 kunlik tarix yo‘q</li>
+          <li>Data xavfsizligi va mahalliy hosting bilan bog‘liq savollar</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Bizning huquqiy/mahalliy jihatlar</h3>
+        <p class="small">Mahalliy serverlar, o‘zbek tilida interpretatsiya, poliklinika integratsiyasi — bu startapni bozorda noyob qiladi va mahalliy regulator talablariga moslashadi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution">
+    <h2>Yechim — UzMediaCare ning noyob afzalliklari</h2>
+    <p>UzMediaCare — ma'lumotni yig‘ishdan tashqari uni tibbiy darajada tahlil qiladigan, klinikalarga integratsiyalangan va cybersecurity-first tamoyillari asosida ishlab chiqilgan platforma.</p>
+
+    <ul>
+      <li><b>Smartwatch → UzMed API → Clinic Sync:</b> Apple HealthKit, Garmin, Whoop, Fitbit va Samsung ma’lumotlarini poliklinika EHRlariga uzatamiz.</li>
+      <li><b>Real-time Alerts:</b> AI anomaliya aniqlagach, oila a'zolari, tez yordam va klinika bildiriladi.</li>
+      <li><b>AI Health Interpreter (o‘zbek tilida):</b> murakkab metrikalarni oddiy tavsiyalarga aylantiradi.</li>
+      <li><b>Trend & Prognosis:</b> 7/30/90 kunlik trendlar va qisqa muddatli yurak urishi prediksiya modullari.</li>
+      <li><b>Zero-Trust & Local Hosting:</b> mahalliy serverlarda shifrlangan saqlash, rollarga asoslangan kirish va audit логлар.</li>
+    </ul>
+  </section>
+
+  <!-- System Architecture (Top-5 #2) -->
+  <section id="architecture">
+    <h2>System Architecture — Qisqacha overview</h2>
+    <p class="small">Quyida soddalashtirilgan arxitekturani ko‘rishingiz mumkin: qanday data oqimi va qayerda AI ishlaydi.</p>
+
+    <div class="grid" style="margin-top:12px;">
+      <div>
+        <h3>Asosiy komponentlar</h3>
+        <ul>
+          <li><b>Device Layer:</b> Apple HealthKit, Garmin Health API, WHOOP, Fitbit</li>
+          <li><b>API Gateway:</b> FastAPI / Node.js — authentication, rate-limiting</li>
+          <li><b>Stream Processor:</b> data cleaning, resampling, feature extraction (Kafka/Redis)</li>
+          <li><b>ML Engine:</b> anomaly detection, HRV models, sleep models (LSTM/Transformer)</li>
+          <li><b>Time-series DB:</b> TimescaleDB/Postgres</li>
+          <li><b>Clinic Dashboard:</b> Next.js — doctor interface, alerts, patient queue</li>
+          <li><b>Security:</b> OAuth2, TLS1.3, KMS, role-based access</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Vizual (SVG)</h3>
+        <!-- Simple inline SVG diagram -->
+        <svg width="100%" height="200" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid meet">
+          <rect x="10" y="20" width="150" height="60" rx="8" fill="#eef2ff" stroke="#cfe8ff"/>
+          <text x="85" y="55" font-size="12" text-anchor="middle" fill="#0b74c9">Smartwatches</text>
+
+          <path d="M160 50 L240 50" stroke="#0b74c9" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+          <rect x="240" y="20" width="150" height="60" rx="8" fill="#f0fdf4" stroke="#cfeedc"/>
+          <text x="315" y="55" font-size="12" text-anchor="middle" fill="#0aa76c">API Gateway</text>
+
+          <path d="M390 50 L470 50" stroke="#0b74c9" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+          <rect x="470" y="10" width="160" height="80" rx="8" fill="#fff7ed" stroke="#ffecd5"/>
+          <text x="550" y="55" font-size="12" text-anchor="middle" fill="#ff8c42">ML Engine</text>
+
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#0b74c9"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Flow (Top-5 #1) -->
+  <section id="flow">
+    <h2>User Flow — Foydalanuvchi yo‘li (qisqacha)</h2>
+    <ol>
+      <li>Foydalanuvchi soatini bog‘laydi (Apple/Garmin/Whoop).</li>
+      <li>Soat ma'lumotlari mobil aplikatsiyaga yoki to‘g‘ridan-to‘g‘ri UzMediaCare API ga yuboriladi.</li>
+      <li>API Gateway ma'lumotni qabul qiladi, autentifikatsiyani tekshiradi va streaming xizmatiga yuboradi.</li>
+      <li>Stream Processor data tozalaydi, resampling qiladi, feature-extraction bajaradi.</li>
+      <li>ML Engine bio-statusni hisoblab, risk score (0–100) chiqaradi va anomaly aniqlasa — alert tetiklanadi.</li>
+      <li>Clinic Dashboardga push qilinadi; shifokor yoki operator ko‘rib, zarur chora ko‘radi.</li>
+    </ol>
+
+    <p class="small">Bu oqim investor va texnik mentorlar uchun loyihaning ishlash printsipini bir qarashda tushunarli qiladi.</p>
+  </section>
+
+  <!-- Competitor table (Top-5 #3) -->
+  <section id="competitors">
+    <h2>Raqobatchilar bilan taqqoslash</h2>
+    <table>
+      <thead><tr><th>Xizmat</th><th>UzMediaCare</th><th>Apple Health</th><th>Garmin Connect</th><th>Mahalliy klinikalar</th></tr></thead>
+      <tbody>
+        <tr><td>Mahalliy poliklinika integratsiyasi</td><td>✔️</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Real-time risk score</td><td>✔️</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>Oila monitoringi</td><td>✔️</td><td>❌</td><td>❌</td><td>❌</td></tr>
+        <tr><td>AI Health Interpreter (o‘zbek tilida)</td><td>✔️</td><td>❌</td><td>❌</td><td>❌</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Risks (Top-5 #4) -->
+  <section id="risks">
+    <h2>Risklar va ularni yengish rejasi</h2>
+    <div class="grid">
+      <div>
+        <h3>API cheklovlari</h3>
+        <p class="small">Garmin/Apple/Whoop API limitlari bo‘lishi mumkin. <b>Yechim:</b> local caching + batch sync, fallback ingestion (manual upload) va pilot loyiha orqali kengaytirish.</p>
+      </div>
+      <div>
+        <h3>Clinic onboarding</h3>
+        <p class="small"><b>Yechim:</b> 1 oylik bepul pilot, integratsiya kitobchasi (EHR connector) va texnik qo‘llab-quvvatlash.</p>
+      </div>
+      <div>
+        <h3>Data xavfsizligi</h3>
+        <p class="small"><b>Yechim:</b> end-to-end encryption, KMS, audit loglar, rollarga asoslangan kirish va mahalliy hosting.</p>
+      </div>
+      <div>
+        <h3>Regulyator talablar</h3>
+        <p class="small"><b>Yechim:</b> lokal qonunchilikka mos hujjatlashtirish, shifokor va klinika bilan birga uyushtirilgan sertifikatlash.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Features (Top-5 #5) -->
+  <section id="future">
+    <h2>Kelajak funksiyalar (Roadmap uchun kuchli qo‘shimchalar)</h2>
+    <ul>
+      <li><b>72 soat oldingi yurak xavfi prediksiyasi</b> — time-series forecasting model</li>
+      <li><b>Sleep coaching</b> — AI asosida uxlab turish rejimi va tavsiyalar</li>
+      <li><b>Family Health Hub</b> — oilaviy monitoring va alertlar</li>
+      <li><b>Clinic-to-patient chat va tasking</b> — shifokor va bemor o‘rtasida tez aloqalar</li>
+      <li><b>Anonim data-insights</b> — sog‘liq statistikasi va enterprise litsenziyalar</li>
+    </ul>
+  </section>
+
+  <!-- Existing full content (kept and clarified) -->
+  <section id="existing">
+    <h2>Full project summary</h2>
+    <p class="small">Bu bo‘lim avvalgi batafsil kontentni jamlagan: muammo, yechim, jamoa, texnologiyalar, subscription plans va pilot launch rejalari.</p>
+
+    <div class="grid" style="margin-top:12px;">
+      <div>
+        <h3>Texnologiyalar (tartibli)</h3>
+        <ul>
+          <li>Frontend: Next.js</li>
+          <li>Backend: FastAPI (Python) + Node.js (connector services)</li>
+          <li>DB: PostgreSQL + TimescaleDB</li>
+          <li>Streaming: Kafka / Redis Streams</li>
+          <li>ML: PyTorch + HuggingFace models (LSTM/Transformer)</li>
+          <li>Auth/Security: OAuth2 / JWT / TLS1.3 / KMS</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Subscription</h3>
+        <ul>
+          <li>Free — 0 so‘m (kunlik bio status)</li>
+          <li>Premium — 29 000 so‘m/oy (real-time, alerts, AI insights)</li>
+          <li>Clinic Pro — 590 000 so‘m/oy (B2B panel, up to 30 patients)</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Team</h3>
+        <ul>
+          <li>Toxirmalik — Team Lead, Data Engineer & Data Scientist</li>
+          <li>Ramazon Furqatov — Backend Engineer</li>
+          <li>Xojiakbar Rustamjonov — Project Manager</li>
+          <li>Akmal Xusainov — Technical Lead</li>
+          <li>Nurislom Dilmurodjonov — Backend & Cybersecurity</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA and final notes -->
+  <section id="cta">
+    <h2></p>
+  </section>
+
+</div>
+
+<footer>
+  © 2025 UzMediaCare — Mahalliy sog‘liq uchun smart monitoring · Prepared by Toxirmalik & team
+</footer>
+
+</body>
+</html>
